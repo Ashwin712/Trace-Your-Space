@@ -2,7 +2,11 @@ import React, { Component } from "react";
 import { Link, Route, Router, Switch } from "react-router-dom";
 import history from "./Routes/history";
 import FixedMenuLayout from "./design/Layout"
-import Tenants from "./Super Admin/Tenants";
+import booking from "./Booking/booking";
+import CardExampleGroupProps from "./UpcomingEvents/upcomingEvents";
+import HomepageLayout from "./HomePage";
+
+
 export class App extends Component {
   constructor(props) {
     super(props);
@@ -15,7 +19,8 @@ export class App extends Component {
       <Router history={history}>
         <div className="routes">
           <Switch>
-            <Route exact path="/" component={Tenants} />
+            {/* <Route path = "/" component={HomepageLayout}/>      */}
+             <FixedMenuLayout/>
           </Switch>
         </div>
       </Router>

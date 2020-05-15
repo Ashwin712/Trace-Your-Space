@@ -1,10 +1,12 @@
 import React, { Component } from "react";
-import { Router } from "react-router-dom";
+import { Router, Route } from "react-router-dom";
 
 import history from "../Routes/history";
 
 import ErrorBoundary from "../Error Boundary/ErrorBoundary"
 
+import CardExampleGroupProps from "../UpcomingEvents/upcomingEvents"
+import booking from "../Booking/booking";
 
 export default class ContentSection extends Component {
   render() {
@@ -12,7 +14,9 @@ export default class ContentSection extends Component {
       <ErrorBoundary>
       <Router history={history}>
        <div>
-             <h1>create your files and put it here</h1>
+            
+            <Route path = "/upcomingEvents" component = {CardExampleGroupProps}/>   
+            <Route path = "/" component={booking}/>   
       </div>
       </Router>
       </ErrorBoundary> 
