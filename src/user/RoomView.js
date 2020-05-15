@@ -16,7 +16,7 @@ class RoomView extends Component {
 
     return (
       <div>
-        <Button onClick={this.show("blurring")}>Blurring</Button>
+        <Button onClick={this.show("blurring")}>Daily</Button>
         <Modal dimmer={dimmer} open={open} onClose={this.close}>
           <Modal.Header>
             Main building first floor - conference room

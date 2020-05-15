@@ -23,8 +23,10 @@ const FixedMenuLayout = () => (
          TRACE X
         </Menu.Item>
          <Menu.Item as='a' onClick={() => history.push("/tenants")}>Tenants</Menu.Item>
-        <Menu.Item as='a' onClick = {() => history.push("/")}>BookARoom</Menu.Item>
+        <Menu.Item as='a' onClick = {() => history.push("/SelectDate")}>BookARoom</Menu.Item>
         <Menu.Item as ='a' onClick = {() => history.push("/upcomingEvents")}>Upcoming Events</Menu.Item>
+        <Menu.Item as ='a' onClick = {() => history.push("/admin")}>Admin</Menu.Item>
+        <Menu.Item as ='a' onClick = {() => history.push("/RoomView")}>Room View</Menu.Item>
         <Menu.Menu position = "right">
         <Menu.Item icon= "user circle"/>
         <Dropdown item simple text = "Ashwin Karthik">

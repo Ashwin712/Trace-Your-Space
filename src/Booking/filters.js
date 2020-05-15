@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Form ,Header, Checkbox, Radio} from 'semantic-ui-react'
-import { unstable_renderSubtreeIntoContainer } from 'react-dom'
+import history from "../Routes/history"
 
 class FilterSelector extends React.Component {
     constructor(props) {
@@ -51,13 +51,13 @@ render (){
           />
            <Form.Radio
             label='40'
-            value='lg'
-            checked={value === 'lg'}
+            value='40'
+            checked={value === '40'}
             onChange={this.handleChange}
           />
         </Form.Group>
     <div style={{textAlign:"center"}}>
-    <Button  type='submit' >Continue</Button>
+    <Button  type='submit' onClick={()=>{history.push("/booking")}} >Continue</Button>
     </div>
     </div>
   </Form>
