@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test for NotFound Snapshot should Match 1`] = `
+Array [
+  <img
+    alt="error_image"
+    className="page_not_found"
+    src="PageNotFound.jpg"
+  />,
+  <center>
+    <a
+      href="/"
+      onClick={[Function]}
+    >
+      Return to Home Page
+    </a>
+  </center>,
+]
+`;
