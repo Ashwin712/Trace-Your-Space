@@ -45,10 +45,10 @@ const CardExampleGroupProps = () => {
             <Card.Content extra>
               <div className="ui two buttons">
                 <Button basic color="green">
-                  Approve
+                  View
                 </Button>
                 <Button basic color="red">
-                  Decline
+                  Cancel
                 </Button>
               </div>
             </Card.Content>

@@ -1,12 +1,5 @@
 import React, { Component } from "react";
-import {
-  Button,
-  Checkbox,
-  Form,
-  Header,
-  Icon,
-  Segment,
-} from "semantic-ui-react";
+import { Button, Checkbox, Form, Header, Icon, Segment } from "semantic-ui-react";
 import "./admin.css";
 
 class NewRoom extends Component {
@@ -48,7 +41,7 @@ class NewRoom extends Component {
     if (e.target.value !== "") {
       await this.setState({
         roomName: e.target.value,
-        roomNameError: false,
+        roomNameError: false, 
         // disable: false,
       });
       if (this.state.building !== "")

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { Router, Switch } from "react-router-dom";
+import { Router, Switch, Route } from "react-router-dom";
 import FixedMenuLayout from "./design/Layout";
 import history from "./Routes/history";
-
+import HomepageLayout from "./HomePage";
 
 export class App extends Component {
   constructor(props) {
@@ -12,16 +12,15 @@ export class App extends Component {
 
   render() {
     return (
-
       <Router history={history}>
         <div className="routes">
           <Switch>
             {/* <Route path="/" component={Tenants} /> */}
+            <Route exact path="/" component={HomepageLayout} />
             <FixedMenuLayout />
           </Switch>
         </div>
       </Router>
-
     );
   }
 }

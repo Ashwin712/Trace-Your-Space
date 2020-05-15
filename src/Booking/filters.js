@@ -1,9 +1,10 @@
 import React from "react";
-import { Button, Checkbox, Form } from "semantic-ui-react";
+import { Button, Form, Header, Checkbox, Radio } from "semantic-ui-react";
+import history from "../Routes/history";
 
 class FilterSelector extends React.Component {
   constructor(props) {
-    super(props); 
+    super(props);
     this.state = {
       value: null,
     };
@@ -16,8 +17,7 @@ class FilterSelector extends React.Component {
         <div style={{ textAlign: "center" }}>
           <h1> Please specify the Requirements</h1>
         </div>
-        <br></br>
-        <Form textAlign="center">
+        <Form style={{ textAlign: "center" }}>
           <br></br>
           <div style={{ textAlign: "center" }}>
             <Form.Group style={{ margin: "10px 0px" }} inline>
@@ -58,13 +58,20 @@ class FilterSelector extends React.Component {
               />
               <Form.Radio
                 label="40"
-                value="lg"
-                checked={value === "lg"}
+                value="40"
+                checked={value === "40"}
                 onChange={this.handleChange}
               />
             </Form.Group>
             <div style={{ textAlign: "center" }}>
-              <Button type="submit">Continue</Button>
+              <Button
+                type="submit"
+                onClick={() => {
+                  history.push("/booking");
+                }}
+              >
+                Continue
+              </Button>
             </div>
           </div>
         </Form>
