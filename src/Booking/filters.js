@@ -30,7 +30,7 @@ render (){
 </Form.Group>
 <br></br>
 <Form.Group inline>
-          <label>Size</label>
+          <label>Capacity</label>
           <Form.Radio
             label='10'
             value='sm'
