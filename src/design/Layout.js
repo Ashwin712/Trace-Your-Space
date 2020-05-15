@@ -15,14 +15,14 @@ import { MemoryRouter } from 'react-router-dom'
 import history from "../Routes/history"
 
 const FixedMenuLayout = () => (
-  <div style={{height: "100vh"}}>
+  <div >
     <Menu fixed='top' inverted>
       <Container>
-        <Menu.Item as='a' header>
+        <Menu.Item  header>
           <Image size='mini' src='/logo.png' style={{ marginRight: '1.5em' }} />
          TRACE X
         </Menu.Item>
-        <Menu.Item as='a' onClick = {() => history.push("/booking")}>BookARoom</Menu.Item>
+        <Menu.Item as='a' onClick = {() => history.push("/")}>BookARoom</Menu.Item>
         <Menu.Item as ='a' onClick = {() => history.push("/upcomingEvents")}>Upcoming Events</Menu.Item>
         <Menu.Menu position = "right">
         <Menu.Item icon= "user circle"/>
@@ -40,7 +40,7 @@ const FixedMenuLayout = () => (
   <ContentSection/>
     </Container>
 <br></br><br></br>
-    <Segment inverted vertical style={{ margin: '11em 0em 0em', padding: '5em 0em 0em' }}>
+    <Segment fluid inverted vertical style={{ margin: '11em 0em 0em', padding: '5em 0em 0em' }}>
       <Container textAlign='center'>
         <Grid divided inverted stackable>
           <Grid.Column width={3}>
