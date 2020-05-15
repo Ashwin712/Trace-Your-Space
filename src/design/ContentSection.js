@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Router, Route } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
 
 import history from "../Routes/history";
 
@@ -21,7 +21,7 @@ export default class ContentSection extends Component {
        <Route exact path = "/" component={Date_Selector}/>  
        <Route path = "/Filters" component={FilterSelector}/>
        <Route path = "/upcomingEvents" component = {CardExampleGroupProps}/>   
-           
+       <Route path="/tenants" component={Tenants} />
       </div>
       </Router>
         <Router history={history}>
