@@ -1,11 +1,7 @@
 import React, { Component } from "react";
-import { Link, Route, Router, Switch } from "react-router-dom";
+import { Router, Switch } from "react-router-dom";
+import FixedMenuLayout from "./design/Layout";
 import history from "./Routes/history";
-import FixedMenuLayout from "./design/Layout"
-import booking from "./Booking/booking";
-import CardExampleGroupProps from "./UpcomingEvents/upcomingEvents";
-import HomepageLayout from "./HomePage";
-import Tenants from "./Super Admin/tenants";
 
 
 export class App extends Component {

@@ -5,42 +5,93 @@ import {
   Form,
   Header,
   Icon,
-  Radio,
   Segment,
 } from "semantic-ui-react";
 import "./admin.css";
 
-function handleSubmit(e) {
-  console.log("submit");
-  e.preventDefault();
-  // this.props.form.validateFieldsAndScroll((err, values) => {
-  //   if (!err) console.log("values", values);
-  //   else console.log("error");
-  // });
-}
 class NewRoom extends Component {
-  state = {
-    building: "",
-    roomName: "",
-    facilities: [],
-    view: "",
-    capacity: "5",
-    buildingError: false,
-    roomNameError: false,
+  constructor(props) {
+    super(props);
+    this.state = {
+      building: "",
+      roomName: "",
+      facilities: [],
+      view: "",
+      capacity: "5",
+      buildingError: false,
+      roomNameError: false,
+      formError: false,
+      disable: true,
+      loadung: false,
+    };
+  }
+  handleChange_building = async (e) => {
+    console.log("building", e.target.value);
+    if (e.target.value !== "") {
+      await this.setState({
+        building: e.target.value,
+        buildingError: false,
+        // disable: false,
+      });
+      if (this.state.roomName !== "")
+        await this.setState({ disable: false });
+    } else {
+      await this.setState({
+        buildingError: true,
+        building: e.target.value,
+        disable: true,
+      });
+    }
   };
+
+  handleChange_roomName = async (e) => {
+    if (e.target.value !== "") {
+      await this.setState({
+        roomName: e.target.value,
+        roomNameError: false,
+        // disable: false,
+      });
+      if (this.state.building !== "")
+        await this.setState({ disable: false });
+    } else {
+      await this.setState({
+        roomNameError: true,
+        roomName: e.target.value,
+        disable: true,
+      });
+    }
+  };
+
+  handleChange_capacity = (e, { value }) => {
+    console.log(this.state.capacity);
+    this.setState({ capacity: value });
+  };
+
+  handleSubmit = (e) => {
+    console.log("submit");
+    this.setState({ loading: true });
+    e.preventDefault();
+    const error = false;
+    if (!this.state.roomNameError || !this.state.buildingError) {
+      this.setState({ formError: true });
+      return;
+    }
+    this.setState({ loading: false });
+  };
+
   render() {
+    const { capacity } = this.state;
     return (
       <div>
         <h1 style={{ textAlign: "center" }}>Add a New Room</h1>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={this.handleSubmit} error={this.state.formError}>
           <Form.Input
             required
             label="Building Name"
             value={this.state.building}
             name="building"
             error={this.state.buildingError}
-            // error={{ content: "Please enter building", pointing: "below" }}
-            fluid
+            onChange={this.handleChange_building}
             placeholder="example:Main building"
           />
           <Form.Input
@@ -49,6 +100,7 @@ class NewRoom extends Component {
             name="roomName"
             value={this.state.roomName}
             error={this.state.roomNameError}
+            onChange={this.handleChange_roomName}
             placeholder="example:1st floor - cabin"
           />
           <Form.Group
@@ -67,18 +119,43 @@ class NewRoom extends Component {
             />
             <Checkbox label="Water" className="facility_input" />
           </Form.Group>
-          <Form.Group
-            inline
-            required
-            name="capacity"
-            value={this.state.capacity}
-          >
+          <Form.Group inline name="capacity">
             <label>Capacity</label>
-            <Radio label="5" defaultChecked className="capacity_input" />
-            <Radio label="10" className="capacity_input" />
-            <Radio label="20" className="capacity_input" />
-            <Radio label="30" className="capacity_input" />
-            <Radio label=">30" className="capacity_input" />
+            <Form.Radio
+              label="5"
+              value="5"
+              checked={capacity === "5"}
+              className="capacity_input"
+              onChange={this.handleChange_capacity}
+            />
+            <Form.Radio
+              label="10"
+              value="10"
+              checked={capacity === "10"}
+              className="capacity_input"
+              onChange={this.handleChange_capacity}
+            />
+            <Form.Radio
+              label="20"
+              value="20"
+              checked={capacity === "20"}
+              className="capacity_input"
+              onChange={this.handleChange_capacity}
+            />
+            <Form.Radio
+              label="30"
+              value="30"
+              checked={capacity === "30"}
+              className="capacity_input"
+              onChange={this.handleChange_capacity}
+            />
+            <Form.Radio
+              label=">30"
+              value=">30"
+              checked={capacity === ">30"}
+              className="capacity_input"
+              onChange={this.handleChange_capacity}
+            />
           </Form.Group>
           <Form.Group inline value={this.state.view} name="view">
             <label className="image_input">View</label>
@@ -97,7 +174,13 @@ class NewRoom extends Component {
           <Button.Group>
             <Button>Cancel</Button>
             <Button.Or />
-            <Button positive type="submit" onClick={handleSubmit}>
+            <Button
+              positive
+              type="submit"
+              disabled={this.state.disable}
+              loading={this.state.loading}
+              onClick={this.handleSubmit}
+            >
               Save
             </Button>
           </Button.Group>
