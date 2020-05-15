@@ -10,6 +10,7 @@ import CardExampleGroupProps from "../UpcomingEvents/upcomingEvents";
 import RoomView from "../user/RoomView";
 import admin from "../Admin/admin";
 import booking from "../Booking/booking";
+import RegisterCompany from "../sign in/RegisterCompany";
 
 export default class ContentSection extends Component {
   render() {
@@ -25,6 +26,7 @@ export default class ContentSection extends Component {
             <Route path="/SelectDate" component={Date_Selector} />
             <Route path="/booking" component={booking} />
             <Route path="/admin" component={admin} />
+            <Route path="/RegisterCompany" component={RegisterCompany} />
           </div>
         </Router>
       </ErrorBoundary>

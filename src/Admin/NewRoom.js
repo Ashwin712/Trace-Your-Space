@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { Button, Checkbox, Form, Header, Icon, Segment } from "semantic-ui-react";
+import {
+  Button,
+  Checkbox,
+  Form,
+  Header,
+  Icon,
+  Segment,
+} from "semantic-ui-react";
 import "./admin.css";
 
 class NewRoom extends Component {
@@ -15,9 +22,24 @@ class NewRoom extends Component {
       roomNameError: false,
       formError: false,
       disable: true,
-      loadung: false,
+      loading: false,
     };
   }
+
+  handleCancel = async () => {
+    await this.setState({
+      building: "",
+      roomName: "",
+      facilities: [],
+      view: "",
+      capacity: "5",
+      buildingError: false,
+      roomNameError: false,
+      formError: false,
+      disable: true,
+      loading: false,
+    });
+  };
   handleChange_building = async (e) => {
     console.log("building", e.target.value);
     if (e.target.value !== "") {
@@ -26,8 +48,7 @@ class NewRoom extends Component {
         buildingError: false,
         // disable: false,
       });
-      if (this.state.roomName !== "")
-        await this.setState({ disable: false });
+      if (this.state.roomName !== "") await this.setState({ disable: false });
     } else {
       await this.setState({
         buildingError: true,
@@ -41,11 +62,10 @@ class NewRoom extends Component {
     if (e.target.value !== "") {
       await this.setState({
         roomName: e.target.value,
-        roomNameError: false, 
+        roomNameError: false,
         // disable: false,
       });
-      if (this.state.building !== "")
-        await this.setState({ disable: false });
+      if (this.state.building !== "") await this.setState({ disable: false });
     } else {
       await this.setState({
         roomNameError: true,
@@ -165,7 +185,7 @@ class NewRoom extends Component {
         </Form>
         <div style={{ textAlign: "center" }}>
           <Button.Group>
-            <Button>Cancel</Button>
+            <Button onClick={this.handleCancel}>Cancel</Button>
             <Button.Or />
             <Button
               positive
