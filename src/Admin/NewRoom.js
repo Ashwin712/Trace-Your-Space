@@ -8,6 +8,7 @@ import {
   Radio,
   Segment,
 } from "semantic-ui-react";
+import history from "../Routes/history"
 import "./admin.css";
 
 function handleSubmit(e) {
@@ -95,7 +96,7 @@ class NewRoom extends Component {
         </Form>
         <div style={{ textAlign: "center" }}>
           <Button.Group>
-            <Button>Cancel</Button>
+            <Button onClick={()=> history.push("/admin")}>Cancel</Button>
             <Button.Or />
             <Button positive type="submit" onClick={handleSubmit}>
               Save
