@@ -31,10 +31,10 @@ const FixedMenuLayout = () => (
         <Dropdown item simple text="Admin">
           <Dropdown.Menu>
             <Dropdown.Item as="a" onClick={() => history.push("/admin")}>
-              Admin
+              List of Rooms
             </Dropdown.Item>
-            <Dropdown.Item as="a" onClick={() => history.push("/RoomView")}>
-              Room View
+            <Dropdown.Item as="a" onClick={() => history.push("/NewRoom")}>
+              Add a Room
             </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
