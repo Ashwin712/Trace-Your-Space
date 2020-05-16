@@ -19,3 +19,4 @@ export const USER_NOTIFICATION = "user-notification";
 // --
 
 
+export const REGISTERED_ROOMS = "list-of-registered-rooms"

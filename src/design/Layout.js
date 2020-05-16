@@ -67,7 +67,7 @@ class FixedMenuLayout extends Component {
               <Dropdown item simple text={this.props.user.profileObj.name}>
                 <Dropdown.Menu>
                   <Dropdown.Item>Settings</Dropdown.Item>
-                  <Dropdown.Item>Sign Out</Dropdown.Item>
+                  <Dropdown.Item onClick={()=> history.push("/")}>Sign Out</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </Menu.Menu>
@@ -75,7 +75,7 @@ class FixedMenuLayout extends Component {
         </Menu>
 
         <Container text style={{ marginTop: "7em" }}>
-          <ContentSection />
+         <ContentSection />
         </Container>
         <br></br>
         <br></br>

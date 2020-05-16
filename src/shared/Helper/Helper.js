@@ -1,5 +1,6 @@
 
-import axios, { post } from "axios";
+import axios, {post} from "axios";
+
 import React from "react";
 import { Form } from 'semantic-ui-react';
 import { getToken } from "../storage/Storage";

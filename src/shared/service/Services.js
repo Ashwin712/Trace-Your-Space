@@ -8,6 +8,7 @@ import {
   USER_STATISTICS,
   ACCEPT_TENANT,
   REJECT_TENANT,
+  REGISTERED_ROOMS
 } from "../configure/Config";
 import Api, { Api1, downloadApi } from "../Helper/Helper";
 
@@ -40,6 +41,10 @@ export const approveTenant = (tenantId) => {
 
 export const rejectTenant = (tenantId) => {
   return Api(REJECT_TENANT + tenantId, null, 'PUT', true)
+}
+
+export const RegisteredRooms = () => {
+  return Api(REGISTERED_ROOMS,null,"GET",true)
 }
 
 // //account services

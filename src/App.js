@@ -18,9 +18,10 @@ export class App extends Component {
         <div className="routes">
           <Switch>
             {/* <Route path="/" component={Tenants} /> */}
-            {/* <Route exact path="/" component={HomepageLayout} /> */}
-            {/* <FixedMenuLayout /> */}
-            <Tenants />
+            <Route exact path="/" component={HomepageLayout} />
+            <FixedMenuLayout />
+            <Route path ="/RegisterCompany" component={RegisterCompany}/>
+         
           </Switch>
         </div>
       </Router>

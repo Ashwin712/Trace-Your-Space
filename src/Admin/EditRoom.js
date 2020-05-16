@@ -22,9 +22,10 @@ class EditRoom extends Component {
   handleChange_building = async (e) => {
     console.log("building", e.target.value);
     if (e.target.value !== "") {
-      await this.setState({
+      await this.setState({ 
         building: e.target.value,
         buildingError: false,
+
         // disable: false,
       });
       if (this.state.roomName !== "")
