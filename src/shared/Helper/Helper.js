@@ -1,44 +1,33 @@
+import history from "../../components/history";
+import axios, {post} from "axios";
 import { Form } from "antd";
-import axios, { post } from "axios";
-import history from "../../components/Routes/history";
-import { getToken } from "../storage/Storage";
-import * as interceptors from "./Interceptors";
-import Logger,{LogLevel} from "../loggers/logger";
-
-
+import React from "react";
+import { getToken } from "../storage/storage";
 export const BASE_URL = window.location.origin + "/api/v1/";
+
 
 axios.defaults.baseURL = BASE_URL;
 axios.defaults.timeout = 10000;
-axios.interceptors.request.use(interceptors.requestInterceptor, interceptors.requestErrorInterceptor);
-
-axios.interceptors.response.use(interceptors.responseInterceptor, interceptors.responseErrorInterceptor);
-
-
-export const startFetch = async(config) => {
-  try {
-    const res = await axios(config)
-    Logger(LogLevel.INFO,"From Api Client: Response From the Api is Success")
-    return res
+axios.interceptors.request.use(
+  (config) =>
+    // console.log(JSON.stringify(config));
+    config,
+  (error) => Promise.reject(error)
+);
+axios.interceptors.response.use(
+  (response) =>
+    // console.log(JSON.stringify(response.data));
+    response.data,
+  (error) => {
+    Promise.reject(error)
   }
-  catch(e) { 
-    Logger(LogLevel.WARN,"From Api Client: Api call has failed")
-    return Promise.reject(e);
-  }
-}
+);
+export const startFetch = (config) => axios(config)
+  .then((res) => res)
 
-
-/**
- * @description that makes an api call with all required headers and other payload
- * @param {*} path path of the api call
- * @param {*} params request payload of the api call
- * @param {*} method method of the api
- * @param {*} token boolean value which specifies the requirement of token
- */
 export default async function Api(path, params, method, token) {
-  Logger(LogLevel.INFO,"From Api client: Starts the Request for "+path+" Api")
   const options = {
-    headers: { 
+    headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
       ...(token && {
@@ -52,40 +41,48 @@ export default async function Api(path, params, method, token) {
   };
   return startFetch({ url: path, ...options });
 }
-
-export const Api1 = (path, params, method) => {
+export const Api1 =  (path, params, method) => {
   return getToken().then((jwt) => {
     let options = {
       headers: {
         Accept: "*/*",
         Authorization: jwt,
       },
-      method: method,
+      method: method, 
       Form,
     };
-    const formData = new FormData();
+   const formData = new FormData();
     for (let key in params) {
       formData.append(key, params[key]);
     }
-    return post(path, formData, options);
+    return post(path,formData,options );
   });
 };
-
 export const downloadApi = (path, params, method, require) => {
-  return getToken().then((token) => {
-    let options;
-    options = {
-      headers: {
-        Accept: "application/pdf",
-        //"Content-type": "application/pdf",
-        "Content-Type": "application/json",
-        ...(require && { Authorization: token }),
-      },
+  try {
+    return getToken().then((token) => {
+      let options;
+      options = {
+        headers: {
+          "Content-type": "application/json;Access-Control-Allow-Origin: *; charset=UTF-8",
+          ...(require && { Authorization: token }),
+        },
 
-      method: method,
-      responseType: "blob",
-      ...(params && { body: JSON.stringify(params) }),
-    };
-    return startFetch({ url: path, ...options });
-  });
+        method: method,
+        ...(params && { body: JSON.stringify(params) }),
+      };
+      return axios(BASE_URL + path, options)
+        .then((resp) => {
+          // let clone = resp.clone();
+          (async () => {
+            // let resText = await clone.text();
+          })();
+          return resp;
+        })
+        .catch(function() {
+          // console.error("error");
+        });
+    });
+  } catch (error) {
+  }
 };
