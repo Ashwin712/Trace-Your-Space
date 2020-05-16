@@ -7,6 +7,7 @@ class FilterSelector extends React.Component {
     super(props);
     this.state = {
       value: null,
+      isProjector: null
     };
   }
   handleChange = (e, { value }) => this.setState({ value });
@@ -22,7 +23,7 @@ class FilterSelector extends React.Component {
           <div style={{ textAlign: "center" }}>
             <Form.Group style={{ margin: "10px 0px" }} inline>
               <label>Facilities</label>
-              <Checkbox label="Projector" className="facility_input" />
+              <Checkbox label="Projector" className="facility_input" onChange={()=> this.setState({isProjector: true})} />
               <Checkbox
                 label="Board"
                 defaultChecked

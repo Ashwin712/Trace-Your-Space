@@ -45,16 +45,26 @@ const slvlnData = Array(9).fill({
   mobile: 9090909090,
 });
 
-const Tenants = () => (
-  <>
-    <h1 style={{ textAlign: "center" }}>List of Tenant requests</h1>
-    <Table
-      celled
-      headerRow={headerRow}
-      renderBodyRow={renderBodyRow}
-      tableData={slvlnData}
-    />
-  </>
-);
+class Tenants extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { data: [] };
+  }
+
+  componentDidMount() {}
+  render() {
+    return (
+      <>
+        <h1 style={{ textAlign: "center" }}>List of Tenant requests</h1>
+        <Table
+          celled
+          headerRow={headerRow}
+          renderBodyRow={renderBodyRow}
+          tableData={slvlnData}
+        />
+      </>
+    );
+  }
+}
 
 export default Tenants;
