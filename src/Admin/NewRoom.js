@@ -182,7 +182,7 @@ class NewRoom extends Component {
               </div>
             </Segment>
           </Form.Group>
-        </Form>
+        </Form> 
         <div style={{ textAlign: "center" }}>
           <Button.Group>
             <Button onClick={this.handleCancel}>Cancel</Button>
