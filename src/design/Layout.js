@@ -7,6 +7,7 @@ import {
   List,
   Menu,
   Segment,
+  Button,
 } from "semantic-ui-react";
 import history from "../Routes/history";
 import ContentSection from "./ContentSection";
@@ -23,7 +24,7 @@ const FixedMenuLayout = () => (
           Tenants
         </Menu.Item>
         <Menu.Item as="a" onClick={() => history.push("/SelectDate")}>
-          BookARoom
+          Book A Room
         </Menu.Item>
         <Menu.Item as="a" onClick={() => history.push("/upcomingEvents")}>
           Upcoming Events
@@ -38,8 +39,10 @@ const FixedMenuLayout = () => (
             </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
-
         <Menu.Menu position="right">
+          <Menu.Item as="a" onClick={() => history.push("/RegisterCompany")}>
+            Register Your Company
+          </Menu.Item>
           <Menu.Item icon="user circle" />
           <Dropdown item simple text="Ashwin Karthik">
             <Dropdown.Menu>
