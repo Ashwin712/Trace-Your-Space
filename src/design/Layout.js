@@ -1,15 +1,16 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Container, Dropdown, Grid, Image, List, Menu, Segment } from "semantic-ui-react";
 import history from "../Routes/history";
 import ContentSection from "./ContentSection";
 
 class FixedMenuLayout extends Component {
-  // constructor(props){
+  // constructor(props) {
   //   super(props);
-  //   this.setState
   // }
   componentDidMount() {
     console.log("props", this.props);
+    this.props.res.data.superAdmin ? history.push('/tenants'):
     history.push("upcomingEvents");
   }
   render() {
@@ -25,41 +26,45 @@ class FixedMenuLayout extends Component {
               /> */}
               TRACE X
             </Menu.Item>
-            {/* {this.props.location.role.data.superAdmin &&
-              this.props.location.role.status === 200 && ( */}
-            <Menu.Item as="a" onClick={() => history.push("/tenants")}>
-              Tenants
-            </Menu.Item>
-            {/* )} */}
-            {/* {!this.props.location.role.data.superAdmin &&
-              this.props.location.role.status === 200 && ( */}
-            <Menu.Item as="a" onClick={() => history.push("/SelectDate")}>
-              Book A Room
-            </Menu.Item>
-            {/* )} */}
-            {/* {!this.props.location.role.data.superAdmin && */}
-            {/* this.props.location.role.status === 200 && ( */}
-            <Menu.Item as="a" onClick={() => history.push("/upcomingEvents")}>
-              Upcoming Events
-            </Menu.Item>
-            {/* )} */}
-            {/* {!this.props.location.role.data.superAdmin &&
-              this.props.location.role.data.admin &&
-              this.props.location.role.status === 200 && ( */}
-            <Dropdown item simple text="Admin">
-              <Dropdown.Menu>
-                <Dropdown.Item as="a" onClick={() => history.push("/admin")}>
-                  List of Rooms
-                </Dropdown.Item>
-                <Dropdown.Item as="a" onClick={() => history.push("/NewRoom")}>
-                  Add a Room
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-            {/* )} */}
+            {this.props.res.data.superAdmin && this.props.res.status === 200 && (
+              <Menu.Item as="a" onClick={() => history.push("/tenants")}>
+                Tenants
+              </Menu.Item>
+            )}
+            {!this.props.res.data.superAdmin && this.props.res.status === 200 && (
+              <Menu.Item as="a" onClick={() => history.push("/SelectDate")}>
+                Book A Room
+              </Menu.Item>
+            )}
+            {!this.props.res.data.superAdmin && this.props.res.status === 200 && (
+              <Menu.Item as="a" onClick={() => history.push("/upcomingEvents")}>
+                Upcoming Events
+              </Menu.Item>
+            )}
+
+            {!this.props.res.data.superAdmin &&
+              this.props.res.data.admin &&
+              this.props.res.status === 200 && (
+                <Dropdown item simple text="Admin">
+                  <Dropdown.Menu>
+                    <Dropdown.Item
+                      as="a"
+                      onClick={() => history.push("/admin")}
+                    >
+                      List of Rooms
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      as="a"
+                      onClick={() => history.push("/NewRoom")}
+                    >
+                      Add a Room
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              )}
             <Menu.Menu position="right">
               <Menu.Item icon="user circle" />
-              <Dropdown item simple text="Ashwin Karthik">
+              <Dropdown item simple text={this.props.user.profileObj.name}>
                 <Dropdown.Menu>
                   <Dropdown.Item>Settings</Dropdown.Item>
                   <Dropdown.Item onClick={()=> history.push("/")}>Sign Out</Dropdown.Item>
@@ -113,4 +118,8 @@ class FixedMenuLayout extends Component {
   }
 }
 
-export default FixedMenuLayout;
+export const mapStateToProps = (state) => ({
+  user: state.googlesignin.googleData,
+  res: state.googlesignin.data,
+});
+export default connect(mapStateToProps, {})(FixedMenuLayout);

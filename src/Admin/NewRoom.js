@@ -1,14 +1,7 @@
 import React, { Component } from "react";
-import {
-  Button,
-  Checkbox,
-  Form,
-  Header,
-  Icon,
-  Segment,
-} from "semantic-ui-react";
+import { Button, Checkbox, Form, Header, Icon, Segment } from "semantic-ui-react";
+import history from "../Routes/history";
 import "./admin.css";
-import history from "../Routes/history"
 
 class NewRoom extends Component {
   constructor(props) {

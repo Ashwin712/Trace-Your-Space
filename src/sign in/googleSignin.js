@@ -1,11 +1,15 @@
-import React, { Component } from "react";
 import PropTypes from "prop-types";
+import React, { Component } from "react";
 import { GoogleLogin } from "react-google-login";
+import { connect } from "react-redux";
 import { Button } from "semantic-ui-react";
-import { googleSignIn } from "../shared/service/Services";
+import {
+  googleSignInApiResponse,
+  googleSignInResponseAction,
+} from "../Redux/actions/googlesigninActions";
 import history from "../Routes/history";
-import { onSignIn } from "../shared/storage/Storage";
-
+import { googleSignIn } from "../shared/service/Services";
+import { onSignIn, setRefreshToken } from "../shared/storage/Storage";
 
 class GoogleSignIn extends Component {
   static contextTypes = {
@@ -13,15 +17,23 @@ class GoogleSignIn extends Component {
   };
   responseGoogle = (response) => {
     console.log("response", response);
+    this.props.googleSignInResponseAction(response);
     googleSignIn({
       deviceTokens: null,
       googleIdToken: response.tokenId,
     }).then((res) => {
-      console.log(res);
-      if (res.status === 200 || 301 || 417) {
-        onSignIn(res.data.accessToken)
+      if (res.status === 200) {
         console.log("res", res);
-        history.push({ pathname: "/upcomingEvents", role: res });
+        this.props.googleSignInApiResponse(res);
+        onSignIn(res.data.accessToken);
+        setRefreshToken(res.data.refreshToken);
+        history.push("/Layout");
+      } else if (res.status === 301) {
+        this.props.googleSignInApiResponse(res);
+        history.push("/Layout");
+      } else if (res.status === 417) {
+        this.props.googleSignInApiResponse(res);
+        history.push("/Layout");
       } else {
         console.log("error");
       }
@@ -51,4 +63,10 @@ class GoogleSignIn extends Component {
     );
   }
 }
-export default GoogleSignIn;
+export const mapStateToProps = (state) => ({
+  googlesignin: state.googlesignin,
+});
+export default connect(mapStateToProps, {
+  googleSignInResponseAction,
+  googleSignInApiResponse,
+})(GoogleSignIn);
