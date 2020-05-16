@@ -42,10 +42,10 @@ const CardExampleGroups1 = ({ items }) => {
         >
           <Card.Content>
             <Image floated="right" size="mini" />
-      <Card.Header>{"Room Name :"}{value.meetingRoomName}</Card.Header>
-      <Card.Meta>{value.buildingName}</Card.Meta>
+      <Card.Header>{value.buildingName}</Card.Header>
+      <Card.Meta>{"Room Name :"}<strong>{value.meetingRoomName}</strong></Card.Meta>
             <Card.Description>
-              Steve wants to add you to the group <strong>best friends</strong>
+      Capacity <strong>{value.roomCapacity}</strong>
             </Card.Description>
           </Card.Content>
           <Card.Content extra>

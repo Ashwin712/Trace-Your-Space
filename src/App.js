@@ -12,7 +12,7 @@ export class App extends Component {
   }
 
   render() {
-    return (
+    return ( 
       <Router history={history}>
         <div className="routes">
           <Switch>

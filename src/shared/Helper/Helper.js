@@ -1,7 +1,8 @@
 
 import axios, {post} from "axios";
-import { Form } from 'semantic-ui-react';
+
 import React from "react";
+import { Form } from 'semantic-ui-react';
 import { getToken } from "../storage/Storage";
 export const BASE_URL = window.location.origin + "/home/v1/";
 
@@ -41,21 +42,21 @@ export default async function Api(path, params, method, token) {
   };
   return startFetch({ url: path, ...options });
 }
-export const Api1 =  (path, params, method) => {
+export const Api1 = (path, params, method) => {
   return getToken().then((jwt) => {
     let options = {
       headers: {
         Accept: "*/*",
         Authorization: jwt,
       },
-      method: method, 
+      method: method,
       Form,
     };
-   const formData = new FormData();
+    const formData = new FormData();
     for (let key in params) {
       formData.append(key, params[key]);
     }
-    return post(path,formData,options );
+    return post(path, formData, options);
   });
 };
 export const downloadApi = (path, params, method, require) => {
@@ -79,7 +80,7 @@ export const downloadApi = (path, params, method, require) => {
           })();
           return resp;
         })
-        .catch(function() {
+        .catch(function () {
           // console.error("error");
         });
     });

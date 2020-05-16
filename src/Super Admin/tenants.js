@@ -44,7 +44,6 @@ const slvlnData = Array(9).fill({
   adminEmail: "admin@admin.com",
   mobile: 9090909090,
 });
-
 class Tenants extends React.Component {
   constructor(props) {
     super(props);
