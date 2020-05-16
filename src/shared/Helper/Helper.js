@@ -1,6 +1,6 @@
 
 import axios, {post} from "axios";
-import { Form } from "antd";
+import { Form } from 'semantic-ui-react';
 import React from "react";
 import { getToken } from "../storage/Storage";
 export const BASE_URL = window.location.origin + "/home/v1/";
