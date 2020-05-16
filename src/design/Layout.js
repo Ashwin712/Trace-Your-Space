@@ -40,9 +40,6 @@ const FixedMenuLayout = () => (
           </Dropdown.Menu>
         </Dropdown>
         <Menu.Menu position="right">
-          <Menu.Item as="a" onClick={() => history.push("/RegisterCompany")}>
-            Register Your Company
-          </Menu.Item>
           <Menu.Item icon="user circle" />
           <Dropdown item simple text="Ashwin Karthik">
             <Dropdown.Menu>

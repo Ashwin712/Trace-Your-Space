@@ -1,6 +1,22 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
-import { Button, Container, Divider, Grid, Header, Icon, Image, List, Menu, Responsive, Segment, Sidebar, Visibility } from "semantic-ui-react";
+import {
+  Button,
+  Container,
+  Divider,
+  Grid,
+  Header,
+  Icon,
+  Image,
+  List,
+  Menu,
+  Responsive,
+  Segment,
+  Sidebar,
+  Visibility,
+} from "semantic-ui-react";
+import history from "./Routes/history";
+import GoogleSignIn from "./sign in/googleSignin";
 // Heads up!
 // We using React Static to prerender our docs with server side rendering, this is a quite simple solution.
 // For more advanced usage please check Responsive docs under the "Usage" section.
@@ -89,18 +105,16 @@ class DesktopContainer extends Component {
                 <Menu.Item as="a">Work</Menu.Item>
                 <Menu.Item as="a">Company</Menu.Item>
                 <Menu.Item as="a">Careers</Menu.Item>
-                <Menu.Item position="right">
+                <Menu.Item
+                  position="right"
+                  as="a"
+                  onClick={() => history.push("/RegisterCompany")}
+                >
                   <Button as="a" inverted={!fixed}>
-                    Log in
+                    Register Your Company
                   </Button>
-                  <Button
-                    as="a"
-                    inverted={!fixed}
-                    primary={fixed}
-                    style={{ marginLeft: "0.5em" }}
-                  >
-                    Sign Up
-                  </Button>
+                  &nbsp; &nbsp;
+                  <GoogleSignIn />
                 </Menu.Item>
               </Container>
             </Menu>
