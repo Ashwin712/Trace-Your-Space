@@ -1,32 +1,38 @@
 import { Form } from "antd";
 import axios, { post } from "axios";
-import history from "../../components/Routes/history";
+import Logger, { LogLevel } from "../loggers/logger";
 import { getToken } from "../storage/Storage";
-import * as interceptors from "./Interceptors";
-import Logger,{LogLevel} from "../loggers/logger";
 
-
-export const BASE_URL = window.location.origin + "/api/v1/";
+export const BASE_URL = window.location.origin + "/home/v1/";
 
 axios.defaults.baseURL = BASE_URL;
 axios.defaults.timeout = 10000;
-axios.interceptors.request.use(interceptors.requestInterceptor, interceptors.requestErrorInterceptor);
-
-axios.interceptors.response.use(interceptors.responseInterceptor, interceptors.responseErrorInterceptor);
-
-
-export const startFetch = async(config) => {
-  try {
-    const res = await axios(config)
-    Logger(LogLevel.INFO,"From Api Client: Response From the Api is Success")
-    return res
+axios.interceptors.request.use(
+  (config) =>
+    // console.log(JSON.stringify(config));
+    config,
+  (error) => Promise.reject(error)
+);
+axios.interceptors.response.use(
+  (response) =>
+    // console.log(JSON.stringify(response.data));
+    response.data,
+  (error) => {
+    Promise.reject(error);
   }
-  catch(e) { 
-    Logger(LogLevel.WARN,"From Api Client: Api call has failed")
+);
+
+export const startFetch = async (config) => {
+  try {
+    const res = await axios(config);
+    console.log(res);
+    Logger(LogLevel.INFO, "From Api Client: Response From the Api is Success");
+    return res;
+  } catch (e) {
+    Logger(LogLevel.WARN, "From Api Client: Api call has failed");
     return Promise.reject(e);
   }
-}
-
+};
 
 /**
  * @description that makes an api call with all required headers and other payload
@@ -36,9 +42,12 @@ export const startFetch = async(config) => {
  * @param {*} token boolean value which specifies the requirement of token
  */
 export default async function Api(path, params, method, token) {
-  Logger(LogLevel.INFO,"From Api client: Starts the Request for "+path+" Api")
+  Logger(
+    LogLevel.INFO,
+    "From Api client: Starts the Request for " + path + " Api"
+  );
   const options = {
-    headers: { 
+    headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
       ...(token && {

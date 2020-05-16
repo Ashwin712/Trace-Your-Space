@@ -113,7 +113,8 @@ class DesktopContainer extends Component {
                   <Button as="a" inverted={!fixed}>
                     Register Your Company
                   </Button>
-                  &nbsp; &nbsp;
+                </Menu.Item>
+                <Menu.Item as="a">
                   <GoogleSignIn />
                 </Menu.Item>
               </Container>
