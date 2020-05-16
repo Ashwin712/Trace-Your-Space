@@ -19,15 +19,19 @@ export default class ContentSection extends Component {
       <ErrorBoundary>
         <Router history={history}>
           <div>
+            <Route
+              exact
+              path="/upcomingEvents"
+              component={CardExampleGroupProps}
+            />
             <Route path="/Filters" component={FilterSelector} />
-            <Route exact path="/upcomingEvents" component={CardExampleGroupProps} />
             <Route path="/tenants" component={Tenants} />
             <Route path="/NewRoom" component={NewRoom} />
             <Route path="/RoomView" component={RoomView} />
             <Route path="/SelectDate" component={Date_Selector} />
             <Route path="/booking" component={booking} />
             <Route path="/admin" component={admin} />
-            <Route path = "/EditRoom" component ={EditRoom}/>
+            <Route path="/EditRoom" component={EditRoom} />
             <Route path="/RegisterCompany" component={RegisterCompany} />
           </div>
         </Router>

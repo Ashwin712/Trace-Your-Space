@@ -1,15 +1,6 @@
 import React, { Component } from "react";
-import {
-  Container,
-  Dropdown,
-  Grid,
-  Image,
-  List,
-  Menu,
-  Segment,
-} from "semantic-ui-react";
+import { Container, Dropdown, Grid, Image, List, Menu, Segment } from "semantic-ui-react";
 import history from "../Routes/history";
-import RegisterCompany from "../sign in/RegisterCompany";
 import ContentSection from "./ContentSection";
 
 class FixedMenuLayout extends Component {
@@ -19,6 +10,7 @@ class FixedMenuLayout extends Component {
   // }
   componentDidMount() {
     console.log("props", this.props);
+    history.push("upcomingEvents");
   }
   render() {
     return (
@@ -33,47 +25,38 @@ class FixedMenuLayout extends Component {
               /> */}
               TRACE X
             </Menu.Item>
-            {this.props.location.role.data.superAdmin &&
-              this.props.location.role.status === 200 && (
-                <Menu.Item as="a" onClick={() => history.push("/tenants")}>
-                  Tenants
-                </Menu.Item>
-              )}
-            {!this.props.location.role.data.superAdmin &&
-              this.props.location.role.status === 200 && (
-                <Menu.Item as="a" onClick={() => history.push("/SelectDate")}>
-                  Book A Room
-                </Menu.Item>
-              )}
-            {!this.props.location.role.data.superAdmin &&
-              this.props.location.role.status === 200 && (
-                <Menu.Item
-                  as="a"
-                  onClick={() => history.push("/upcomingEvents")}
-                >
-                  Upcoming Events
-                </Menu.Item>
-              )}
-            {!this.props.location.role.data.superAdmin &&
+            {/* {this.props.location.role.data.superAdmin &&
+              this.props.location.role.status === 200 && ( */}
+            <Menu.Item as="a" onClick={() => history.push("/tenants")}>
+              Tenants
+            </Menu.Item>
+            {/* )} */}
+            {/* {!this.props.location.role.data.superAdmin &&
+              this.props.location.role.status === 200 && ( */}
+            <Menu.Item as="a" onClick={() => history.push("/SelectDate")}>
+              Book A Room
+            </Menu.Item>
+            {/* )} */}
+            {/* {!this.props.location.role.data.superAdmin && */}
+            {/* this.props.location.role.status === 200 && ( */}
+            <Menu.Item as="a" onClick={() => history.push("/upcomingEvents")}>
+              Upcoming Events
+            </Menu.Item>
+            {/* )} */}
+            {/* {!this.props.location.role.data.superAdmin &&
               this.props.location.role.data.admin &&
-              this.props.location.role.status === 200 && (
-                <Dropdown item simple text="Admin">
-                  <Dropdown.Menu>
-                    <Dropdown.Item
-                      as="a"
-                      onClick={() => history.push("/admin")}
-                    >
-                      List of Rooms
-                    </Dropdown.Item>
-                    <Dropdown.Item
-                      as="a"
-                      onClick={() => history.push("/NewRoom")}
-                    >
-                      Add a Room
-                    </Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-              )}
+              this.props.location.role.status === 200 && ( */}
+            <Dropdown item simple text="Admin">
+              <Dropdown.Menu>
+                <Dropdown.Item as="a" onClick={() => history.push("/admin")}>
+                  List of Rooms
+                </Dropdown.Item>
+                <Dropdown.Item as="a" onClick={() => history.push("/NewRoom")}>
+                  Add a Room
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+            {/* )} */}
             <Menu.Menu position="right">
               <Menu.Item icon="user circle" />
               <Dropdown item simple text="Ashwin Karthik">
@@ -87,8 +70,7 @@ class FixedMenuLayout extends Component {
         </Menu>
 
         <Container text style={{ marginTop: "7em" }}>
-          {this.props.location.role.status === 417 && <RegisterCompany />}
-          {this.props.location.role.status === 200 && <ContentSection />}
+          <ContentSection />
         </Container>
         <br></br>
         <br></br>
