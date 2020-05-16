@@ -20,7 +20,7 @@ export default class ContentSection extends Component {
         <Router history={history}>
           <div>
             <Route path="/Filters" component={FilterSelector} />
-            <Route path="/upcomingEvents" component={CardExampleGroupProps} />
+            <Route exact path="/upcomingEvents" component={CardExampleGroupProps} />
             <Route path="/tenants" component={Tenants} />
             <Route path="/NewRoom" component={NewRoom} />
             <Route path="/RoomView" component={RoomView} />

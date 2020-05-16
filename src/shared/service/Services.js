@@ -19,7 +19,7 @@ import Api, { Api1, downloadApi } from "../Helper/Helper";
 // };
 
 export const googleSignIn = (params) => {
-  return Api(GOOGLE_SIGNIN, params, "POST", false); 
+  return Api(GOOGLE_SIGNIN, params, "POST", false);
 };
 
 export const RegisterTenant = (params) =>{
@@ -207,7 +207,7 @@ export const RegisterTenant = (params) =>{
 // };
 
 // //notification services
-// export const accountManagerNotiifcation = () => { 
+// export const accountManagerNotiifcation = () => {
 //   return Api(ACCOUNT_MANAGER_NOTIFICATION, null, "GET", true);
 // };
 
