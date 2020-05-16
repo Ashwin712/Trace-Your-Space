@@ -1,5 +1,6 @@
 import React from 'react'
 import { Card, Segment, Button,Image,Icon,Modal, Popup  } from 'semantic-ui-react'
+import Pannellum360 from "../Imagery/Panellum360";
 
 const items = [
   {
@@ -83,13 +84,10 @@ class booking extends React.Component {
                     Main building first floor - conference room
                   </Modal.Header>
                   <Modal.Content image>
-                    <div style={{paddingLeft:"20px"}}>
-                      <Image
-                        wrapped
-                        size="medium"
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSKkfrGfZiWLC2S-Z-4DMZc4rdkdcDl2hATg0MVJnwssxVoQsSh&usqp=CAU"
-                      />
-                    </div>
+                    {window.width> 800 &&
+                    <div style={{paddingLeft:"20px" ,width: "50%"}}>
+                    <Pannellum360 />
+                    </div>}
                     <Modal.Description>
                       <div style={{ paddingLeft: "30px" }}>
                         <p>

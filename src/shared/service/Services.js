@@ -26,9 +26,9 @@ export const RegisterTenant = (params) =>{
   return Api(REGISTER_TENANT, params, "POST",false)
 }
 
-export const tenantList = (params) =>{
-  return Api(TENANT_LIST,)
-}
+// export const tenantList = (params) =>{
+//   return Api(TENANT_LIST,)
+// }
 
 // //account services
 
