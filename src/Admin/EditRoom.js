@@ -3,7 +3,7 @@ import { Button, Checkbox, Form, Header, Icon, Segment } from "semantic-ui-react
 import "./admin.css";
 import history from "../Routes/history"
 
-class NewRoom extends Component {
+class EditRoom extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -77,7 +77,7 @@ class NewRoom extends Component {
     const { capacity } = this.state;
     return (
       <div>
-        <h1 style={{ textAlign: "center" }}>Add a New Room</h1>
+        <h1 style={{ textAlign: "center" }}>Edit Room</h1>
         <Form onSubmit={this.handleSubmit} error={this.state.formError}>
           <Form.Input
             required
@@ -184,4 +184,4 @@ class NewRoom extends Component {
   }
 }
 
-export default NewRoom;
+export default EditRoom;

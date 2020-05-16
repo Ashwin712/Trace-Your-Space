@@ -37,7 +37,7 @@ const CardExampleGroups1 = ({ items }) => {
         <Card
           centered={true}
           fluid={true}
-          onClick={()=>{history.push("/NewRoom")}}
+          
         >
           <Card.Content>
             <Image floated="right" size="mini" />
@@ -46,6 +46,13 @@ const CardExampleGroups1 = ({ items }) => {
             <Card.Description>
               Steve wants to add you to the group <strong>best friends</strong>
             </Card.Description>
+          </Card.Content>
+          <Card.Content extra>
+            <div className="ui two buttons">
+              <Button onClick={()=>{history.push("/EditRoom")}} basic color="green">
+                Edit Room
+              </Button>
+            </div>
           </Card.Content>
         </Card>
       ))}

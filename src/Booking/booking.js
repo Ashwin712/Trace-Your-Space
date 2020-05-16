@@ -3,28 +3,29 @@ import { Card, Segment, Button,Image,Icon,Modal, Popup  } from 'semantic-ui-reac
 
 const items = [
   {
-    name: 'Project Report - April',
+    name: "Project Report - April",
     description:
-      'Leverage agile frameworks to provide a robust synopsis for high level overviews.',
-    meta:{
-    },
-    extra :<div style={{textAlign: "right"}}><Button>hi</Button></div>
-
+      "Leverage agile frameworks to provide a robust synopsis for high level overviews.",
+    meta: {},
+    extra: (
+      <div style={{ textAlign: "right" }}>
+        <Button>hi</Button>
+      </div>
+    ),
   },
   {
-    header: 'Project Report - May',
+    header: "Project Report - May",
     description:
-      'Bring to the table win-win survival strategies to ensure proactive domination.',
-    meta: 'ROI: 34%',
+      "Bring to the table win-win survival strategies to ensure proactive domination.",
+    meta: "ROI: 34%",
   },
   {
-    header: 'Project Report - June',
+    header: "Project Report - June",
     description:
-      'Capitalise on low hanging fruit to identify a ballpark value added activity to beta test.',
-    meta: 'ROI: 27%',
+      "Capitalise on low hanging fruit to identify a ballpark value added activity to beta test.",
+    meta: "ROI: 27%",
   },
-]
-
+];
 
 
 
@@ -135,4 +136,4 @@ class booking extends React.Component {
 
 
 
-export default booking
+export default booking;
