@@ -84,10 +84,9 @@ class booking extends React.Component {
                     Main building first floor - conference room
                   </Modal.Header>
                   <Modal.Content image>
-                    {window.width> 800 &&
                     <div style={{paddingLeft:"20px" ,width: "50%"}}>
                     <Pannellum360 />
-                    </div>}
+                    </div>
                     <Modal.Description>
                       <div style={{ paddingLeft: "30px" }}>
                         <p>

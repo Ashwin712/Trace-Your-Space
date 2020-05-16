@@ -33,30 +33,19 @@ class FixedMenuLayout extends Component {
               /> */}
               TRACE X
             </Menu.Item>
-            {this.props.location.role.data.superAdmin &&
-              this.props.location.role.status === 200 && (
                 <Menu.Item as="a" onClick={() => history.push("/tenants")}>
                   Tenants
                 </Menu.Item>
-              )}
-            {!this.props.location.role.data.superAdmin &&
-              this.props.location.role.status === 200 && (
                 <Menu.Item as="a" onClick={() => history.push("/SelectDate")}>
                   Book A Room
                 </Menu.Item>
-              )}
-            {!this.props.location.role.data.superAdmin &&
-              this.props.location.role.status === 200 && (
+
                 <Menu.Item
                   as="a"
                   onClick={() => history.push("/upcomingEvents")}
                 >
                   Upcoming Events
                 </Menu.Item>
-              )}
-            {!this.props.location.role.data.superAdmin &&
-              this.props.location.role.data.admin &&
-              this.props.location.role.status === 200 && (
                 <Dropdown item simple text="Admin">
                   <Dropdown.Menu>
                     <Dropdown.Item
@@ -73,13 +62,12 @@ class FixedMenuLayout extends Component {
                     </Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
-              )}
             <Menu.Menu position="right">
               <Menu.Item icon="user circle" />
               <Dropdown item simple text="Ashwin Karthik">
                 <Dropdown.Menu>
                   <Dropdown.Item>Settings</Dropdown.Item>
-                  <Dropdown.Item>Sign Out</Dropdown.Item>
+                  <Dropdown.Item onClick={()=> history.push("/")}>Sign Out</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </Menu.Menu>
@@ -87,8 +75,7 @@ class FixedMenuLayout extends Component {
         </Menu>
 
         <Container text style={{ marginTop: "7em" }}>
-          {this.props.location.role.status === 417 && <RegisterCompany />}
-          {this.props.location.role.status === 200 && <ContentSection />}
+         <ContentSection />
         </Container>
         <br></br>
         <br></br>

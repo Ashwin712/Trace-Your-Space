@@ -6,6 +6,7 @@ import {
   USER_DETAILS,
   USER_NOTIFICATION,
   USER_STATISTICS,
+  REGISTERED_ROOMS
 } from "../configure/Config";
 import Api, { Api1, downloadApi } from "../Helper/Helper";
 
@@ -29,6 +30,10 @@ export const RegisterTenant = (params) =>{
 // export const tenantList = (params) =>{
 //   return Api(TENANT_LIST,)
 // }
+
+export const RegisteredRooms = () => {
+  return Api(REGISTERED_ROOMS,null,"GET",true)
+}
 
 // //account services
 

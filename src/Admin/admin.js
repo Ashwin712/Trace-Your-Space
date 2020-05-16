@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Card, Icon, Image, Modal, Popup } from "semantic-ui-react";
 import history from "../Routes/history"
+import { RegisteredRooms } from "../shared/service/Services";
 let loading = false;
 let dimmer = null;
 
@@ -41,8 +42,8 @@ const CardExampleGroups1 = ({ items }) => {
         >
           <Card.Content>
             <Image floated="right" size="mini" />
-            <Card.Header>{value.name}</Card.Header>
-            <Card.Meta>Friends of Elliot</Card.Meta>
+      <Card.Header>{"Room Name :"}{value.meetingRoomName}</Card.Header>
+      <Card.Meta>{value.buildingName}</Card.Meta>
             <Card.Description>
               Steve wants to add you to the group <strong>best friends</strong>
             </Card.Description>
@@ -51,6 +52,9 @@ const CardExampleGroups1 = ({ items }) => {
             <div className="ui two buttons">
               <Button onClick={()=>{history.push("/EditRoom")}} basic color="green">
                 Edit Room
+              </Button>
+              <Button onClick={()=>{history.push("/EditRoom")}} basic color="red">
+                Delete Room
               </Button>
             </div>
           </Card.Content>
@@ -61,11 +65,24 @@ const CardExampleGroups1 = ({ items }) => {
 };
 
 class admin extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { data: []};
+  }
+
+  componentDidMount(){
+    RegisteredRooms().then(res=>{
+      this.setState({
+data: res.data
+      })
+    })
+  }
   render() {
     return (
       <>
         <h1 style={{ textAlign: "center", marginBottom: '40px'}}>List of Rooms Available </h1>
-        <CardExampleGroups1 style={{marginTop: "20px"}} items={items} />
+        <CardExampleGroups1 style={{marginTop: "20px"}} items={this.state.data} />
       </>
     );
   }

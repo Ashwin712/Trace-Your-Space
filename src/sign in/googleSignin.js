@@ -4,6 +4,8 @@ import { GoogleLogin } from "react-google-login";
 import { Button } from "semantic-ui-react";
 import { googleSignIn } from "../shared/service/Services";
 import history from "../Routes/history";
+import { onSignIn } from "../shared/storage/Storage";
+
 
 class GoogleSignIn extends Component {
   static contextTypes = {
@@ -17,8 +19,9 @@ class GoogleSignIn extends Component {
     }).then((res) => {
       console.log(res);
       if (res.status === 200 || 301 || 417) {
+        onSignIn(res.data.accessToken)
         console.log("res", res);
-        history.push({ pathname: "/Layout", role: res });
+        history.push({ pathname: "/upcomingEvents", role: res });
       } else {
         console.log("error");
       }

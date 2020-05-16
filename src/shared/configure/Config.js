@@ -13,3 +13,4 @@ export const POST_MAIL = "account-manager/mail-to-user/";
 export const ACCOUNT_MANAGER_NOTIFICATION = "account-manager-notiifcation";
 export const MANAGER_NOTIFICATION = "manager-notification";
 export const USER_NOTIFICATION = "user-notification";
+export const REGISTERED_ROOMS = "list-of-registered-rooms"
