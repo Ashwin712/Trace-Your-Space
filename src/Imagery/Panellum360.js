@@ -12,7 +12,7 @@ const Pannellum360 = ({ imageUrl, roomName }) => (
         <h2 style={{ alignSelf: 'center' }}>Room Name</h2>
         <div style={{ alignSelf: 'center' }}>
             <Pannellum
-                width="50%"
+                width="100%"
                 height="500px"
                 image={myImage}
                 // image={imageUrl} -- API

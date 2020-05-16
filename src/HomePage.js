@@ -114,7 +114,10 @@ class DesktopContainer extends Component {
                     Register Your Company
                   </Button>
                   &nbsp; &nbsp;
-                  <GoogleSignIn />
+                
+                </Menu.Item>
+                <Menu.Item>
+                <GoogleSignIn />
                 </Menu.Item>
               </Container>
             </Menu>

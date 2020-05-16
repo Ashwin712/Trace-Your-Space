@@ -9,6 +9,7 @@
     "axios": "^0.19.2",
     "formik": "^2.1.4",
     "history": "^4.10.1",
+    "pannellum-react": "^1.2.4",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -39,5 +40,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://1ab8b5a8.ngrok.io"
+  "proxy": "http://1429d6dc.ngrok.io"
 }
