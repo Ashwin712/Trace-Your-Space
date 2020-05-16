@@ -1,5 +1,6 @@
 import {
   GOOGLE_SIGNIN,
+  REGISTER_TENANT,
   TENANT_LIST,
   TENANT_STATUS,
   USER_DETAILS,
@@ -20,6 +21,14 @@ import Api, { Api1, downloadApi } from "../Helper/Helper";
 export const googleSignIn = (params) => {
   return Api(GOOGLE_SIGNIN, params, "POST", false); 
 };
+
+export const RegisterTenant = (params) =>{
+  return Api(REGISTER_TENANT, params, "POST",false)
+}
+
+export const tenantList = (params) =>{
+  return Api(TENANT_LIST,)
+}
 
 // //account services
 

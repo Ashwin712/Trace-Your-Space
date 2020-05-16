@@ -1,9 +1,9 @@
-import history from "../../components/history";
+
 import axios, {post} from "axios";
 import { Form } from "antd";
 import React from "react";
-import { getToken } from "../storage/storage";
-export const BASE_URL = window.location.origin + "/api/v1/";
+import { getToken } from "../storage/Storage";
+export const BASE_URL = window.location.origin + "/home/v1/";
 
 
 axios.defaults.baseURL = BASE_URL;

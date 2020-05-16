@@ -1,6 +1,7 @@
 import React, { Component, useCallback } from "react";
 import { Form, Input, Button } from "semantic-ui-react";
-
+import { RegisterTenant } from "../shared/service/Services";
+import history from "../Routes/history"
 class RegisterCompany extends Component {
   constructor(props) {
     super(props);
@@ -101,8 +102,23 @@ class RegisterCompany extends Component {
       !adminNameError ||
       !phoneNoError
     ) {
+      console.log("inside if")
+      RegisterTenant({
+        adminEmailId: this.state.emailId,
+        adminName: this.state.adminName,
+        adminPhoneNumber: this.state.phoneNo,
+        domain: this.state.domain,
+        tenantName: this.state.tenantName
+    }).then((res)=>{
+      if(res.status === 200)
+      history.push("/")
+    })
+   
       this.setState({ formError: true });
-    } else this.setState({ formError: false });
+    } else {
+      console.log("register")
+   
+      this.setState({ formError: false });}
   };
   render() {
     return (
