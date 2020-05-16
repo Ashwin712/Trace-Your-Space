@@ -6,6 +6,8 @@ import {
   USER_DETAILS,
   USER_NOTIFICATION,
   USER_STATISTICS,
+  ACCEPT_TENANT,
+  REJECT_TENANT,
 } from "../configure/Config";
 import Api, { Api1, downloadApi } from "../Helper/Helper";
 
@@ -22,13 +24,23 @@ export const googleSignIn = (params) => {
   return Api(GOOGLE_SIGNIN, params, "POST", false);
 };
 
-export const RegisterTenant = (params) =>{
-  return Api(REGISTER_TENANT, params, "POST",false)
+export const RegisterTenant = (params) => {
+  return Api(REGISTER_TENANT, params, "POST", false)
 }
 
-// export const tenantList = (params) =>{
-//   return Api(TENANT_LIST,)
-// }
+
+
+export const tenantList = () => {
+  return Api(TENANT_LIST, null, 'GET', true);
+}
+
+export const approveTenant = (tenantId) => {
+  return Api(ACCEPT_TENANT + tenantId, null, 'PUT', true)
+}
+
+export const rejectTenant = (tenantId) => {
+  return Api(REJECT_TENANT + tenantId, null, 'PUT', true)
+}
 
 // //account services
 

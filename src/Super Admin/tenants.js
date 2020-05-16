@@ -1,66 +1,129 @@
 import React from "react";
-import { Button, Table } from "semantic-ui-react";
+import { Button, Table, Dimmer, Loader, Confirm } from "semantic-ui-react";
+import { tenantList, approveTenant, rejectTenant } from "../shared/service/Services";
 
-const headerRow = ["Company", "Admin", "Email", "Mobile", "Action"];
 
-// export default class Tenants extends React.Component {
-//     constructor(props) {
-//         super(props);
-//         this.state = {
-//             loading: false,
-//         }
-//     }
+const headerRow = ["Tenant Name", "Admin", "Admin's Email", "Admin's Mobile", "Action"];
+const slvln = [
+  {
+    "tenantId": "ab0cd3dc-9c4a-4d0b-bad4-aa26a99ef236",
+    "tenantName": "nineleaps",
+    "adminName": null,
+    "adminEmailId": null,
+    "adminPhoneNumber": null
+  }
+]
 
-//     async componentDidMount() {
-//         this.setState({ loading: true })
-//         const apiData = await callAPI();
-//         this.setState({ loading: false })
-
-//     }
-// }
-
-const renderBodyRow = (data, i) => ({
-  key: data.name || `row-${i}`,
-  cells: [
-    data.tenantName,
-    data.adminName,
-    data.adminEmail,
-    data.mobile,
-    {
-      icon: "tick",
-      content: (
-        <div>
-          <Button primary>Accept</Button>
-          <Button secondary>Decline</Button>
-        </div>
-      ),
-    },
-  ],
-});
-
-const slvlnData = Array(9).fill({
-  tenantName: "Company Name",
-  adminName: "Admin",
-  adminEmail: "admin@admin.com",
-  mobile: 9090909090,
-});
 
 class Tenants extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { data: [] };
+    this.state = { data: [], loading: false, action: '', id: '' };
   }
 
-  componentDidMount() {}
+  openConfirm = () => {
+    this.setState({ confirm: true })
+  }
+
+
+  closeConfirm = () => {
+    this.setState({ confirm: false })
+  }
+
+  async componentDidMount() {
+    this.setState({ loading: true });
+    tenantList().then((res) => {
+      console.log('tenant list api', res);
+      this.setState({
+        data: res,
+        loading: true,
+        confirm: false
+      })
+    })
+  }
+
+  approveHandler = (evt, data) => {
+    this.setState({ action: 'approve' }, () => { this.openConfirm() });
+  }
+
+
+  rejectHandler = (evt, data) => {
+    this.setState({ action: 'reject' }, () => { this.openConfirm() })
+  }
+
+
+  confirmHandler = () => {
+    const { id, action } = this.state;
+    if (action === 'approve') {
+      this.setState({ loading: true })
+      approveTenant(id).then((res) => {
+        this.setState({ loading: false });
+      })
+    }
+
+    if (action === 'reject') {
+      this.setState({ loading: true })
+      rejectTenant(id).then((res) => {
+        this.setState({ loading: false });
+      })
+    }
+
+    tenantList().then((res) => {
+      console.log('tenant list api', res);
+      this.setState({
+        data: res,
+        loading: true,
+        confirm: false
+      })
+    })
+
+  }
+
+  renderBodyRow = (data, i) => {
+    const { tenantId, tenantName, adminName, adminEmailId, adminPhoneNumber } = data;
+    this.setState({ id: tenantId });
+    return (
+      {
+        key: tenantId || `row-${i}`,
+        cells: [
+          tenantName || 'Looks like an error',
+          adminName || 'Looks like an error',
+          adminEmailId || 'Looks like an error',
+          adminPhoneNumber || 'Looks like an error',
+          {
+            icon: "tick",
+            content: (
+              <div>
+                <Button primary onClick={this.approveHandler}>Accept</Button>
+                <Button secondary onClick={this.rejectHandler}>Decline</Button>
+              </div>
+            ),
+          },
+        ],
+      }
+    )
+
+  }
+
   render() {
+
     return (
       <>
         <h1 style={{ textAlign: "center" }}>List of Tenant requests</h1>
         <Table
           celled
           headerRow={headerRow}
-          renderBodyRow={renderBodyRow}
-          tableData={slvlnData}
+          renderBodyRow={this.renderBodyRow}
+          tableData={this.state.data}
+        />
+        <Dimmer active={this.state.loading} inverted>
+          <Loader />
+        </Dimmer>
+
+        <Confirm
+          open={this.state.confirm}
+          onCancel={this.closeConfirm}
+          onConfirm={this.confirmHandler}
         />
       </>
     );

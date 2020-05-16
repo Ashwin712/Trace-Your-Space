@@ -16,8 +16,7 @@ class GoogleSignIn extends Component {
     router: PropTypes.object,
   };
   responseGoogle = (response) => {
-    console.log("response", response);
-    this.props.googleSignInResponseAction(response);
+    console.log("google response", response);
     googleSignIn({
       deviceTokens: null,
       googleIdToken: response.tokenId,
@@ -58,7 +57,7 @@ class GoogleSignIn extends Component {
         onSuccess={this.responseGoogle}
         onFailure={this.responseGoogle}
         cookiePolicy={"single_host_origin"}
-        // isSignedIn={false}
+      // isSignedIn={false}
       />
     );
   }

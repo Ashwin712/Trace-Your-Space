@@ -3,7 +3,9 @@ export const GOOGLE_SIGNIN = "user";
 export const REGISTER_TENANT = "tenant";
 export const RENEW_SUBSCRIPTION = "user/email-for-subscription";
 
-export const TENANT_LIST = "tenant/get-tenants";
+export const TENANT_LIST = "list-of-tenants";
+export const ACCEPT_TENANT = 'super-admin-accepts-requests/';
+export const REJECT_TENANT = 'super-admin-decline-request/'
 export const REQUEST_LIST = "admin/account-manager-requests";
 export const ADMIN_ACCEPT = "admin/accept-account-manager-request/";
 export const ADMIN_DECLINE = "admin/decline-account-manager-request/";
@@ -13,3 +15,7 @@ export const POST_MAIL = "account-manager/mail-to-user/";
 export const ACCOUNT_MANAGER_NOTIFICATION = "account-manager-notiifcation";
 export const MANAGER_NOTIFICATION = "manager-notification";
 export const USER_NOTIFICATION = "user-notification";
+
+// --
+
+

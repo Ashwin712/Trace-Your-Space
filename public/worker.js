@@ -1,16 +1,16 @@
 var CACHE_NAME = 'trace-your-space';
 var urlsToCache = [
     '/',
-    '/Filters',
-    '/upcomingEvents',
-    '/tenants',
-    '/NewRoom',
-    '/RoomView',
-    '/SelectDate',
-    '/booking',
-    '/admin',
-    '/EditRoom',
-    '/RegisterCompany'
+    // '/Filters',
+    // '/upcomingEvents',
+    // '/tenants',
+    // '/NewRoom',
+    // '/RoomView',
+    // '/SelectDate',
+    // '/booking',
+    // '/admin',
+    // '/EditRoom',
+    // '/RegisterCompany'
 ];
 
 // Install a service worker
